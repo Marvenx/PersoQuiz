@@ -1,19 +1,26 @@
-function handleAnswer(answer) {
-  setAnswers([...answers, answer]);
-  setCurrentQuestionIndex(currentQuestionIndex + 1);
-};
+import React from "react";
+import { useContext } from "react";
+import { UserContext } from "./UserContext";
 
-function handleUserFormSubmit(name) {
-  setUserName(name);
-};
+export default function Results({ element, artwork }) {
+  // reference the context for the "name".
+  const { name } = useContext(UserContext);
 
-function determineElement(answers) {
-  const counts = {};
-  answers.forEach(function(answer) {
-    const element = elements[answer];
-    counts[element] = (counts[element] || 0) + 1;
-  });
-  return Object.keys(counts).reduce(function(a, b) {
-    return counts[a] > counts[b] ? a : b
-  });
-};
+  return (
+    <div>
+      <p>
+        <strong>{name}</strong>, your element is: {element}
+      </p>
+      {artwork ? (
+        <div className="artwork">
+          <h2>{artwork.title}</h2>
+          <img src={artwork.primaryImage} alt={artwork.title} />
+          <p>{artwork.artistDisplayName}</p>
+          <p>{artwork.objectDate}</p>
+        </div>
+      ) : (
+        <p>No artwork found.</p>
+      )}
+    </div>
+  );
+}

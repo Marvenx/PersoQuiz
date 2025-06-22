@@ -14,6 +14,17 @@ export default function UserForm() {
   }
 
   return (
-    <input onSubmit={handleSubmit}> </input>
+    <form onSubmit={handleSubmit}>
+      <label>
+        Enter your name:
+        <input
+          type="text"
+          value={inputName}
+          onChange={(e) => setInputName(e.target.value)}
+          required
+        />
+      </label>
+      <button type="submit">Start Quiz</button>
+    </form>
   );
 }

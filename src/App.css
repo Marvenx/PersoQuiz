@@ -1,38 +1,93 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* General Styles */
+html {
+  font-family: Arial, sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background-color: #f0f0f0;
+  min-height: 100vh;
 }
 
-.App-link {
-  color: #61dafb;
+/* Header Styles */
+header {
+  color: black;
+  width: 100%;
+  text-align: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+nav a {
+  color: black;
+  text-decoration: none;
+  display: inline-block;
+  margin: 0 10px;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* Form Styles */
+form {
+  max-width: 400px;
+  width: 100%;
+  margin: 20px 0;
+}
+
+form label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+form input {
+  width: 400px;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 5px;
+}
+
+form button {
+  color: black;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Question Styles */
+h2 {
+  text-align: center;
+  width: 100%;
+  margin-top: 30px;
+}
+
+p {
+  text-align: center;
+  width: 100%;
+}
+
+button {
+  color: black;
+  padding: 20px;
+  margin-right: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #c4c4c4;
+}
+
+.artwork {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.artwork img {
+  max-width: 30%;
+  border-radius: 10px;
+}
+
+.artwork p {
+  margin: 5px 0;
+  text-align: center;
 }

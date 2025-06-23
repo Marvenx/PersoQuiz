@@ -13,6 +13,7 @@ function App() {
   const [element, setElement] = useState(null);
   const [userName, setUserName] = useState("");
   const [artwork, setArtwork] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   function handleAnswer(answer) {
     setAnswers([...answers, answer]);
@@ -21,6 +22,10 @@ function App() {
 
   function handleUserFormSubmit(name) {
     setUserName(name);
+    setAnswers([]);
+    setCurrentQuestionIndex(0);
+    setElement(null);
+    setArtwork(null);
   }
 
   function determineElement(answers) {
@@ -35,6 +40,7 @@ function App() {
   }
 
   async function fetchArtwork(keyword) {
+    setLoading(true);
     try {
       const response = await fetch(
         `https://collectionapi.metmuseum.org/public/collection/v1/search?q=${keyword}&hasImages=true`
@@ -42,7 +48,6 @@ function App() {
       const data = await response.json();
 
       if (data.total > 0) {
-        // Get a random artwork from the results
         const randomIndex = Math.floor(Math.random() * data.objectIDs.length);
         const artworkId = data.objectIDs[randomIndex];
 
@@ -60,16 +65,16 @@ function App() {
             objectDate: artworkData.objectDate || "Unknown Date",
           });
         } else {
-          console.error("No image available for this artwork");
           setArtwork(null);
         }
       } else {
-        console.error("No artworks found for this keyword");
         setArtwork(null);
       }
     } catch (error) {
       console.error("Error fetching artwork:", error);
       setArtwork(null);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -123,7 +128,7 @@ function App() {
                 onAnswer={handleAnswer}
               />
             ) : (
-              <Results element={element} artwork={artwork} />
+              <Results element={element} artwork={artwork} loading={loading} />
             )
           }
         />

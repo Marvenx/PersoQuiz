@@ -2,8 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import { UserContext } from "./UserContext";
 
-export default function Results({ element, artwork }) {
-  // reference the context for the "name".
+export default function Results({ element, artwork, loading }) {
   const { name } = useContext(UserContext);
 
   return (
@@ -11,7 +10,9 @@ export default function Results({ element, artwork }) {
       <p>
         <strong>{name}</strong>, your element is: {element}
       </p>
-      {artwork ? (
+      {loading ? (
+        <p>Fetching artwork...</p>
+      ) : artwork ? (
         <div className="artwork">
           <h2>{artwork.title}</h2>
           <img src={artwork.primaryImage} alt={artwork.title} />

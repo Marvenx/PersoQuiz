@@ -94,6 +94,14 @@ function App() {
       question: "What's your favorite color?",
       options: ["Red 🔴", "Blue 🔵", "Green 🟢", "Yellow 🟡"],
     },
+    {
+      question: "Pick a natural scene:",
+      options: ["Volcano 🌋", "Ocean 🌊", "Forest 🌲", "Sky ☁️"],
+    },
+    {
+      question: "Choose a quality:",
+      options: ["Passion ❤️", "Calm 💧", "Strength 🪨", "Freedom 🕊️"],
+    },
   ];
 
   const keywords = {
@@ -104,11 +112,22 @@ function App() {
   };
 
   const elements = {
-    "Red 🔴": "Fire",
-    "Blue 🔵": "Water",
-    "Green 🟢": "Earth",
-    "Yellow 🟡": "Air",
-  };
+  "Red 🔴": "Fire",
+  "Blue 🔵": "Water",
+  "Green 🟢": "Earth",
+  "Yellow 🟡": "Air",
+
+  "Volcano 🌋": "Fire",
+  "Ocean 🌊": "Water",
+  "Forest 🌲": "Earth",
+  "Sky ☁️": "Air",
+
+  "Passion ❤️": "Fire",
+  "Calm 💧": "Water",
+  "Strength 🪨": "Earth",
+  "Freedom 🕊️": "Air",
+};
+
 
   return (
     <UserProvider value={{ name: userName, setName: setUserName }}>

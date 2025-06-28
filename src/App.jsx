@@ -3,7 +3,7 @@ import Question from "./components/Question";
 import Results from "./components/Results";
 import UserForm from "./components/UserForm";
 import { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { UserProvider } from "./components/UserContext";
 import "./App.css";
 
@@ -14,6 +14,16 @@ function App() {
   const [userName, setUserName] = useState("");
   const [artwork, setArtwork] = useState(null);
   const [loading, setLoading] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === "/quiz") {
+      setAnswers([]);
+      setCurrentQuestionIndex(0);
+      setElement(null);
+      setArtwork(null);
+    }
+  }, [location.pathname]);
 
   function handleAnswer(answer) {
     setAnswers([...answers, answer]);
@@ -22,10 +32,6 @@ function App() {
 
   function handleUserFormSubmit(name) {
     setUserName(name);
-    setAnswers([]);
-    setCurrentQuestionIndex(0);
-    setElement(null);
-    setArtwork(null);
   }
 
   function determineElement(answers) {
@@ -112,22 +118,21 @@ function App() {
   };
 
   const elements = {
-  "Red 🔴": "Fire",
-  "Blue 🔵": "Water",
-  "Green 🟢": "Earth",
-  "Yellow 🟡": "Air",
+    "Red 🔴": "Fire 🔥",
+    "Blue 🔵": "Water 🌊",
+    "Green 🟢": "Earth 🌱",
+    "Yellow 🟡": "Air 🌬️",
 
-  "Volcano 🌋": "Fire",
-  "Ocean 🌊": "Water",
-  "Forest 🌲": "Earth",
-  "Sky ☁️": "Air",
+    "Volcano 🌋": "Fire 🔥",
+    "Ocean 🌊": "Water 🌊",
+    "Forest 🌲": "Earth 🌱",
+    "Sky ☁️": "Air 🌬️",
 
-  "Passion ❤️": "Fire",
-  "Calm 💧": "Water",
-  "Strength 🪨": "Earth",
-  "Freedom 🕊️": "Air",
-};
-
+    "Passion ❤️": "Fire 🔥",
+    "Calm 💧": "Water 🌊",
+    "Strength 🪨": "Earth 🌱",
+    "Freedom 🕊️": "Air 🌬️",
+  };
 
   return (
     <UserProvider value={{ name: userName, setName: setUserName }}>
@@ -152,7 +157,6 @@ function App() {
           }
         />
       </Routes>
-
       <footer className="footer">
         <p>Made with ❤️ by Marven</p>
       </footer>
